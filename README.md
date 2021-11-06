@@ -1,7 +1,7 @@
-# fwb10alluri
+# db10alluri
 
 Kunal Reddy Alluri
 
-[heroku server](https://fwb10alluri.herokuapp.com/)
+[heroku server](https://db10alluri.herokuapp.com/)
 
 class Rose attridutes: names(String), colour(String), cost(number)
