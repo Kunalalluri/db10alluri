@@ -1,9 +1,6 @@
-var express = require("express");
+var express = require('express');
+const van_controlers= require('../controllers/van');
 var router = express.Router();
-
-/* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("van", { title: "Search Results van" });
-});
-
+/* GET vans */
+router.get('/', van_controlers.van_view_all_Page );
 module.exports = router;
