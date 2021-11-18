@@ -1,0 +1,47 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let id = toShow._id 
+    - let names = toShow.names 
+    - let colour = toShow.colour 
+    - let cost = toShow.cost 
+    - let actionid = "/resource/vans/" + id 
+    script let actionid = "#{actionid}" 
+    div(class="card m-3" style="width: 28rem;")
+            div(class="card-body")
+              div( class="text-center display-4 text-uppercase") Name: #{names}
+              div(class="text-center display-6")
+                span Color:
+                    span( class="text-center display-6" style='color:'+colour)  #{colour}
+              div( class="text-center display-6") Cost: $ #{cost}
+              div( class="text-center display-6") 
+                button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+                button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+    
+    script. 
+        function cancel() { 
+        // Go back to the home page for the costume collection 
+        window.location.href='/van' 
+        } 
+    script. 
+        function deleteOnid() { 
+        console.log("starting delete") 
+        // delete first 
+        fetch(actionid, { 
+            method: 'DELETE'     
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Delete succeded") 
+        
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Delete failed " + error ) 
+        }); 
+        } 

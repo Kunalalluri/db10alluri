@@ -1,0 +1,51 @@
+extends layout 
+ 
+block content 
+  h1= title 
+
+  if (toShow == null) 
+    h2 No instance to update 
+  else 
+    
+    - let id = toShow._id 
+    - let names = toShow.names 
+    - let colour = toShow.colour 
+    - let cost = toShow.cost  
+    
+    div.row(class='mb-2') 
+        
+    - let actionid = "/resource/vans/" + id 
+    form(id='vanForm', action= actionid) 
+
+        div ID is 
+        div(class="form-control") #{id} 
+        div.form-group 
+            label(for='names' class="form-label") Van type 
+            input#names(type='text', name='names', value=names class="form-control") 
+        div.form-group 
+            label(for='colour' class="form-label") Van Colour 
+            input#colour(type='text', name='colour', value= colour class="form-control") 
+        div.form-group 
+            label(for='cost' class="form-label") Van cost 
+            input#cost(type='number', name='cost', value=cost class="form-control" ) 
+        div(class="m-2")
+        input(type="submit" class="btn btn-primary") 
+        a(href="/van" class="btn btn-secondary")  Go to van
+    
+    script. 
+        document.forms['vanForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        // TODO do something here to show user that form is being submitted 
+        fetch(event.target.action, { 
+            method: 'PUT', 
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+        }).then((resp) => { 
+            return resp.json(); // or resp.text() or whatever the server sends 
+        }).then((body) => { 
+            alert("Update succeded") 
+            // TODO handle body 
+        }).catch((error) => { 
+            // TODO handle error 
+            alert("Update failed " + error ) 
+        }); 
+        }); 

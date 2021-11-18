@@ -36,7 +36,7 @@ async function recreateDB() {
   await Van.deleteMany();
   let instance1 = new
     Van({
-      names: "benz", colour: 'large',
+      names: "benz", colour: 'Red',
       cost: 25.4
     });
   instance1.save(function (err, doc) {
@@ -46,7 +46,7 @@ async function recreateDB() {
 
   let instance2 = new
   Van({
-    names: "bmw", colour: 'small',
+    names: "bmw", colour: 'Yellow',
     cost: 25.4
   });
 instance2.save(function (err, doc) {
@@ -56,7 +56,7 @@ instance2.save(function (err, doc) {
 
 let instance3 = new
 Van({
-  names: "audi", colour: 'medium',
+  names: "audi", colour: 'Black',
   cost: 25.4
 });
 instance3.save(function (err, doc) {

@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  
+  h1= title 
+
+  if (toShow == null) 
+    h2 No instance to view 
+  else 
+ 
+    - let id = toShow._id 
+    - let names = toShow.names 
+    - let colour = toShow.colour 
+    - let cost = toShow.cost 
+
+     div(class="card m-3" style="width: 28rem;")
+            div(class="card-body")
+              div( class="text-center display-4 text-uppercase") Name: #{names}
+              div(class="text-center display-6")
+                span Color:
+                    span( class="text-center display-6" style='color:'+colour)  #{colour}
+              div( class="text-center display-6") Cost: $ #{cost}
+              div( class="text-center display-6")
+                    a(href="/van" class="btn btn-secondary")  Go to vans
